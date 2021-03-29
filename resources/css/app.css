@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.form-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  border-color: #e2e8f0;
+  border-width: 1px;
+  border-radius: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.form-input-two {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  border-color: #e2e8f0;
+  border-width: 1px;
+  border-radius: 0 0.25rem 0.25rem 0;
+  padding: 0.5rem 0.75rem 0.5rem 0.25rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Первый дизайн */
+.template__01 {
+    opacity: 1;
+    background: linear-gradient(225deg, rgb(170, 7, 107), rgb(97, 4, 95));
+    color: #fff;
+  }
+  .template__01 .btn-color {
+    background: linear-gradient(225deg, rgb(236, 72, 153), rgb(190, 24, 93));
+  }
+  .template__01 .input-style {
+    color: #fff;
+  }
+
+  .template__02 {
+    opacity: 1;
+    background: linear-gradient(225deg, rgb(25, 64, 109), rgb(24, 8, 54));
+    color: #fff;
+  }
+  .template__02 .btn-color {
+    background: linear-gradient(225deg, rgb(236, 72, 153), rgb(190, 24, 93));
+  }
+  .template__02 .input-style {
+    color: #fff;
+  }
+
+  .template__03 {
+    opacity: 1;
+    background: linear-gradient(225deg, rgb(195, 20, 50), rgb(36, 11, 54));
+    color: #fff;
+  }
+  .template__03 .btn-color {
+    background: #FF2E63;
+  }
+  .template__03 .input-style {
+    color: #fff;
+  }
+
+  .template__04 {
+    opacity: 1;
+    background: linear-gradient(225deg, #FFFFFF, #FFEFBA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: rgb(80, 75, 63);
+  }
+  .template__04 .btn-color {
+    background: #d3c28b;
+  }
+  .template__04 .input-style {
+    color: #fff;
+  }
+
+.size {
+    max-height: calc(100vw / 16 * 9 / 2);
+  }
+@media (max-width: 640px) {
+    .size {
+      max-height: calc(100vw / 16 * 9);
+    }
+}
