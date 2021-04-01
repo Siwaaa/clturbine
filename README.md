@@ -1,5 +1,6 @@
+```
 cd www/clturbine.ru/
-
+```
 
 Заменить строки в .env
 ```
