@@ -7,21 +7,24 @@
       <img :src="srcImg" alt="Красивая картинка" class="w-full" />
     </div>
     <header class="mt-4 px-6 text-white">
-      <h1 class="text-3xl font-semibold">{{pageProps.title_ad}}</h1>
+      <h1 class="text-3xl font-semibold">{{ pageProps.title_ad }}</h1>
     </header>
     <main class="mt-4 px-6 flex flex-col text-white">
       <div class="decription">
-        {{pageProps.decription_ad}}
+        {{ pageProps.decription_ad }}
       </div>
       <div v-if="ds" class="mt-4">Timer ?</div>
       <a
         :href="`/${pageProps.url}/inst`"
-        class="btn-color inline-block mx-auto my-6 px-4 py-2 font-medium transition-colors duration-150  rounded-lg focus:outline-none"
-        >{{pageProps.btn_ad}}</a
+        class="btn-color inline-block mx-auto my-6 px-4 py-2 font-medium transition-colors duration-150 rounded-lg focus:outline-none"
+        >{{ pageProps.btn_ad }}</a
       >
 
       <label class="inline-block absolute bottom-2 inset-x-0 text-center"
-        >Сделано в <a href="https://client-turbine.ru" target="_blank" class="">ClientTurbine</a></label
+        >Сделано в
+        <a href="https://client-turbine.ru" target="_blank" class=""
+          >ClientTurbine</a
+        ></label
       >
     </main>
   </div>
@@ -29,19 +32,31 @@
 
 <script>
 export default {
-  props: ['pageProps', 'template'],
+  props: ["pageProps", "template"],
   data() {
     return {
       ds: false,
       className: "bg-purple-600",
       srcImg: null,
-      urlAPI: "http://127.0.0.1:8000",
-    }
+    //   urlAPI: "http://127.0.0.1:8001",
+    urlAPI: "https://api.client-turbine.ru",
+    };
   },
-  computed: {
-  },
+  computed: {},
   created() {
-      this.srcImg = this.urlAPI + "/images/" + this.pageProps.img_cover
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    fetch(`${this.urlAPI}/api/${this.pageProps.url}/img`, options)
+      .then((response) => response.json())
+      .then((res) => {
+        if (res.success) {
+          this.srcImg = res.img;
+        }
+      });
   },
 };
 </script>

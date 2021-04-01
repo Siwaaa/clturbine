@@ -5,9 +5,15 @@
   >
     <vue-progress-bar></vue-progress-bar>
     <div class="inst w-full flex items-center flex-col">
-      <img v-if="instinfo" :src="instinfo.profile_url" alt="avatar" class="h-20 w-20 overflow-hidden" style="border-radius: 50%"/>
-      <img v-else src="/img/ava.svg" alt="avatar">
-      <h4 class="font-bold mt-2">{{instinfo.full_name}}</h4>
+      <img
+        v-if="instinfo"
+        :src="instinfo.profile_url"
+        alt="avatar"
+        class="h-20 w-20 overflow-hidden"
+        style="border-radius: 50%"
+      />
+      <img v-else src="/img/ava.svg" alt="avatar" />
+      <h4 class="font-bold mt-2">{{ instinfo.full_name }}</h4>
       <span class="flex items-center">
         <svg class="inline mr-2" viewBox="0 0 48 48" width="24px" height="24px">
           <radialGradient
@@ -70,7 +76,7 @@
           :href="`https://www.instagram.com/${pageProps.instagram}/`"
           target="_black"
           @click.prevent="warning"
-          class="btn-color inline-block w-full mt-6 px-4 py-2 font-medium transition-colors duration-150  rounded-lg focus:outline-none"
+          class="btn-color inline-block w-full mt-6 px-4 py-2 font-medium transition-colors duration-150 rounded-lg focus:outline-none"
         >
           Подписаться
         </a>
@@ -114,7 +120,7 @@
         @submit.prevent="searchAk"
         class="input-container w-full md:max-w-xs md:m-auto mt-4 text-center"
       >
-        <input type="hidden" name="_token" :value="csrf">
+        <input type="hidden" name="_token" :value="csrf" />
         <h2 class="font-bold text-xl leading-5">
           Введите ваш логин инстаграма для проверки подписки:
         </h2>
@@ -127,7 +133,7 @@
         />
         <button
           type="submit"
-          class="btn-color inline-block w-full mt-2 px-4 py-2 font-medium transition-colors duration-150  rounded-lg focus:outline-none"
+          class="btn-color inline-block w-full mt-2 px-4 py-2 font-medium transition-colors duration-150 rounded-lg focus:outline-none"
         >
           Проверить
         </button>
@@ -183,6 +189,8 @@ export default {
       checkFirstScreen: false,
       textResponse: "Идет поиск вашего аккаунта...",
       intAvatar: null,
+    //   urlAPI: "http://127.0.0.1:8001",
+      urlAPI: "https://api.client-turbine.ru",
     };
   },
   computed: {},
@@ -218,7 +226,7 @@ export default {
       this.openModal();
       this.$Progress.start();
       console.log(this.inst);
-      fetch(`http://127.0.0.1:8001/api/${this.pageProps.url}/check`, {
+      fetch(`${this.urlAPI}/api/${this.pageProps.url}/check`, {
         method: "POST",
         headers: {
           Accept: "application/json",
