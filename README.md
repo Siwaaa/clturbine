@@ -12,20 +12,13 @@ npm run prod
 cd www/clturbine.ru/
 ```
 
-
 Заменить строки в .env
 ```
-cd www/clturbine.ru/
-
 APP_NAME=Clturbine
 APP_ENV=production
 APP_KEY=base64:wNFrbQ1syy67/RQNxvA3k8WmrJ/+SYq4iC3BhxX91pQ=
 APP_DEBUG=true
 APP_URL=https://clturbine.site
-```
-
-```
-rm /bootstrap/cache/config.php
 ```
 
 ## Обновление
