@@ -2,7 +2,6 @@
   <div
     class="pb-6 w-full relative break-words min-h-screen md:h-full md:shadow-lg md:rounded-lg"
     :class="template.css_class"
-    style="white-space: pre-wrap;"
   >
     <div class="w-full overflow-hidden size z-20">
       <img :src="srcImg" alt="Красивая картинка" class="w-full" />
@@ -12,7 +11,7 @@
     </header>
     <main class="mt-4 px-6 flex flex-col">
       <div class="decription">
-        <p>{{ pageProps.description_ad }}</p>
+        <p style="white-space: pre-wrap;">{{ pageProps.description_ad }}</p>
       </div>
       <div v-if="ds" class="mt-4">Timer ?</div>
       <a
@@ -21,12 +20,12 @@
         >{{ pageProps.btn_ad }}</a
       >
 
-      <label class="inline-block absolute bottom-2 inset-x-0 text-center"
+      <!-- <label class="inline-block absolute bottom-2 inset-x-0 text-center"
         >Сделано в
         <a href="https://client-turbine.ru" target="_blank" class=""
           >ClientTurbine</a
         ></label
-      >
+      > -->
     </main>
   </div>
 </template>

@@ -124,13 +124,17 @@
         <h2 class="font-bold text-xl leading-5">
           Введите ваш логин инстаграма для проверки подписки:
         </h2>
-        <input
-          v-model="inst"
-          type="text"
-          maxlength="24"
-          required
-          class="w-full form-input mt-8 text-black focus:outline-none"
-        />
+        <div class="relative">
+          <span class="absolute top-10 left-1 text-gray-700">@</span>
+          <input
+            v-model="inst"
+            type="text"
+            maxlength="24"
+            required
+            class="w-full form-input mt-8 text-black focus:outline-none"
+            style="padding-left: 1.25rem"
+          />
+        </div>
         <button
           type="submit"
           class="btn-color inline-block w-full mt-2 px-4 py-2 font-medium transition-colors duration-150 rounded-lg focus:outline-none"
@@ -169,12 +173,12 @@
         </div>
       </form>
 
-      <label class="inline-block absolute bottom-2 inset-x-0 text-center"
+      <!-- <label class="inline-block absolute bottom-2 inset-x-0 text-center"
         >Сделано в
         <a href="https://client-turbine.ru" target="_blank" class=""
           >ClientTurbine</a
         ></label
-      >
+      > -->
     </main>
   </div>
 </template>
@@ -189,7 +193,7 @@ export default {
       checkFirstScreen: false,
       textResponse: "Идет поиск вашего аккаунта...",
       intAvatar: null,
-    //   urlAPI: "http://127.0.0.1:8001",
+      //   urlAPI: "http://127.0.0.1:8001",
       urlAPI: "https://api.client-turbine.ru",
     };
   },

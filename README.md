@@ -2,11 +2,11 @@
 ## Deployment
 1. Локально проделываем следующие операции:
 ```
+npm run prod
 composer install --optimize-autoloader --no-dev
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
-npm run prod
 ```
 2. Пуляем на github
 ```
