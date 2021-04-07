@@ -1,6 +1,6 @@
 
 ## Deployment
-Локально проделываем следующие операции:
+1. Локально проделываем следующие операции:
 ```
 composer install --optimize-autoloader --no-dev
 php artisan config:cache
@@ -8,7 +8,7 @@ php artisan route:cache
 php artisan view:cache
 npm run prod
 ```
-Пуляем на github
+2. Пуляем на github
 ```
 git add .
 git commit -m ""
@@ -16,20 +16,18 @@ git push origin master
 ```
 
 На хостинге
-Подтянуть изменения
+3. Подтянуть изменения
 ```
 cd www/clturbine.ru/
 git pull
 ```
-
-Заменить строки в .env
+Если есть изменения:
 ```
-APP_NAME=Clturbine
-APP_ENV=production
-APP_KEY=base64:wNFrbQ1syy67/RQNxvA3k8WmrJ/+SYq4iC3BhxX91pQ=
-APP_DEBUG=false
-APP_URL=https://clturbine.site
+git checkout ИМЯ_ФАЙЛА
+```
 
-DB_HOST=localhost
+4. Заменить строки в .env
+```
+cp -f .env.example .env
 ```
 
