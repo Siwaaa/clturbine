@@ -8,6 +8,13 @@ php artisan route:cache
 php artisan view:cache
 npm run prod
 ```
+Пуляем на github
+```
+git add .
+git commit -m ""
+git push origin master
+```
+
 На хостинге
 Подтянуть изменения
 ```

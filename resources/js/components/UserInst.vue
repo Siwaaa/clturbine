@@ -1,6 +1,6 @@
 <template>
   <div
-    class="pb-6 pt-12 px-6 w-full relative min-h-screen md:h-full md:shadow-lg md:rounded-lg"
+    class="pb-6 pt-12 px-6 w-full relative break-words min-h-screen md:h-full md:shadow-lg md:rounded-lg"
     :class="template.css_class"
   >
     <vue-progress-bar></vue-progress-bar>

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Page;
 use App\Models\Template;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cookie;
+
 
 class PageController extends Controller
 {
@@ -12,6 +15,14 @@ class PageController extends Controller
     {
         $page = Page::where('url', $url)->first();
         $template = Template::where('id', $page->template_id)->first();
+
+        if(isset($page) && !isset($_COOKIE["v1-{$page->id}"])) {
+            $page->count_prosmotr += 1;
+            $page->save();
+            // устанавливаем куки на месяц
+            Cookie::queue("v1-{$page->id}", 'true', 60 * 24 * 30);
+        }
+
         return view('start', compact('page', 'template'));
     }
 
@@ -36,6 +47,13 @@ class PageController extends Controller
         $instinfo['profile_url'] = $profile_url;
         $instinfo['full_name'] = $full_name;
 
+        if(isset($page) && !isset($_COOKIE["v2-{$page->id}"])) {
+            $page->count_check += 1;
+            $page->save();
+
+            Cookie::queue("v2-{$page->id}", 'true', 60 * 24 * 30);
+        }
+
         return view('inst', compact('page', 'template', 'instinfo'));
     }
 
@@ -45,6 +63,13 @@ class PageController extends Controller
         $template = Template::where('id', $page->template_id)->first();
 
         if (isset($page) && isset($_COOKIE['url'])) {
+            if(!isset($_COOKIE["v3-{$page->id}"])) {
+                $page->count_podpis += 1;
+                $page->save();
+
+                Cookie::queue("v3-{$page->id}", 'true', 60 * 24 * 30);
+            }
+
             return view('finish', compact('page', 'template'));
         } else {
             return redirect()->intended();

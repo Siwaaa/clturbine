@@ -1,17 +1,17 @@
 <template>
   <div
-    class="pb-6 w-full relative min-h-screen md:h-full md:shadow-lg md:rounded-lg"
+    class="pb-6 w-full relative break-words min-h-screen md:h-full md:shadow-lg md:rounded-lg"
     :class="template.css_class"
   >
     <div class="w-full overflow-hidden size z-20">
       <img :src="srcImg" alt="Красивая картинка" class="w-full" />
     </div>
-    <header class="mt-4 px-6 text-white">
+    <header class="mt-4 px-6">
       <h1 class="text-3xl font-semibold">{{ pageProps.title_ad }}</h1>
     </header>
-    <main class="mt-4 px-6 flex flex-col text-white">
+    <main class="mt-4 px-6 flex flex-col">
       <div class="decription">
-        {{ pageProps.decription_ad }}
+        <p style="white-space: pre-wrap;">{{ pageProps.description_ad }}</p>
       </div>
       <div v-if="ds" class="mt-4">Timer ?</div>
       <a
