@@ -9,7 +9,7 @@
       <h4 class="mb-4 font-semibold">
         {{pageProps.title_success}}
       </h4>
-      <p style="white-space: pre-wrap;">
+      <p class="text-center" style="white-space: pre-wrap;">
         {{pageProps.description_success}}
       </p>
       <a

@@ -258,7 +258,7 @@ export default {
               this.textResponse = "Идет поиск вашего аккаунта...";
             }, 2000);
           } else {
-            this.textResponse = "Аккаунт НЕ найден!";
+            this.textResponse = "Вы не подписались";
             setTimeout(() => {
               this.closeModal();
               this.textResponse = "Идет поиск вашего аккаунта...";

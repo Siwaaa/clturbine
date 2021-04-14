@@ -4,7 +4,7 @@
     :class="template.css_class"
   >
     <div class="w-full overflow-hidden size z-20">
-      <img :src="srcImg" alt="Красивая картинка" class="w-full" />
+      <img :src="srcImg" class="w-full" />
     </div>
     <header class="mt-4 px-6">
       <h1 class="text-3xl font-semibold">{{ pageProps.title_ad }}</h1>

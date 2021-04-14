@@ -11,11 +11,7 @@
     <div id="app">
         <div class="flex justify-center items-center min-h-screen md:p-6 md:bg-gray-50">
             <div class="max-w-xl text-center space-y-4">
-                <h1 class="text-2xl font-light">404. Cтраница не найдена</h1>
-                <p class="text-gray-600 text-sm">
-                Видимо адрес этой страницы перестал существовать.
-                Попробуйте вернуться немного назад.
-                </p>
+                <h1 class="text-2xl font-light">403. Отказано в доступе</h1>
                 <a href="https://client-turbine.ru" class="mt-4 underline">Перейти на главную</a>
             </div>
         </div>
