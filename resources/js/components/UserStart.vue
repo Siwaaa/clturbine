@@ -1,6 +1,6 @@
 <template>
   <div
-    class="pb-6 w-full relative break-words min-h-screen md:h-full md:shadow-lg md:rounded-lg"
+    class="pb-6 sm:w-96 w-full relative break-words min-h-screen md:h-full md:shadow-lg md:rounded-lg"
     :class="template.css_class"
   >
     <div class="w-full overflow-hidden size z-20">

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="pb-6 px-6 relative break-words min-h-screen flex items-center w-full md:h-full md:shadow-lg md:rounded-lg"
+    class="sm:w-96 w-full pb-6 px-6 relative break-words min-h-screen flex items-center  md:h-full md:shadow-lg md:rounded-lg"
     :class="template.css_class"
   >
     <div
