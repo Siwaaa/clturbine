@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @import url(template.css);
+@import url(fonts.css);
+
+html {
+    font-family: 'Inter', sans-serif;
+}
 
 .form-input {
   -webkit-appearance: none;
