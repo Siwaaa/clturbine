@@ -15,10 +15,10 @@ git commit -m ""
 git push origin master
 ```
 
-На хостинге
+На vps
 3. Подтянуть изменения
 ```
-cd www/clturbine.ru/
+cd /var/www/www-root/data/www/clturbine.site
 git pull
 ```
 Если есть изменения:
@@ -30,4 +30,5 @@ git checkout ИМЯ_ФАЙЛА
 ```
 cp -f .env.example .env
 ```
+
 
