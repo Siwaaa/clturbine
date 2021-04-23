@@ -14,7 +14,8 @@
       </p>
       <a
         :href="`${pageProps.link_download}`"
-        class="btn-color inline-block mx-auto mt-6 px-4 py-2 font-medium transition-colors duration-150  rounded-lg focus:outline-none"
+        onclick="fbq('trackCustom', 'GetMaterialButton')"
+        class="btn-color inline-block mx-auto mt-6 px-4 py-2 font-medium transition-all duration-150 transform active:scale-105 rounded-lg focus:outline-none"
         >{{pageProps.btn_success}}
       </a>
     </div>

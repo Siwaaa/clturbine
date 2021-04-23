@@ -16,7 +16,7 @@
       <div v-if="ds" class="mt-4">Timer ?</div>
       <a
         :href="`/${pageProps.url}/inst`"
-        class="btn-color inline-block mx-auto my-6 px-4 py-2 font-medium transition-colors duration-150 rounded-lg focus:outline-none"
+        class="btn-color btn-animate w-full inline-block text-center my-6 px-4 py-2 font-medium transition-all duration-150 transform active:scale-105 rounded-lg focus:outline-none overflow-hidden relative"
         >{{ pageProps.btn_ad }}</a
       >
 

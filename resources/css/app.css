@@ -34,54 +34,30 @@ html {
   line-height: 1.5;
 }
 
-/* Первый дизайн */
-.template__01 {
-    opacity: 1;
-    background: linear-gradient(225deg, rgb(170, 7, 107), rgb(97, 4, 95));
-    color: #fff;
-  }
-  .template__01 .btn-color {
-    background: linear-gradient(225deg, rgb(236, 72, 153), rgb(190, 24, 93));
-  }
-  .template__01 .input-style {
-    color: #fff;
-  }
+.btn-animate::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1.5rem;
+    height: 100%;
+    background: linear-gradient(270deg, rgba(255, 255, 255, .65) 0%, rgba(255, 255, 255, 0) 100%);
+    animation: move-light 2.9s infinite;
+}
 
-  .template__02 {
-    opacity: 1;
-    background: linear-gradient(225deg, rgb(25, 64, 109), rgb(24, 8, 54));
-    color: #fff;
-  }
-  .template__02 .btn-color {
-    background: linear-gradient(225deg, rgb(236, 72, 153), rgb(190, 24, 93));
-  }
-  .template__02 .input-style {
-    color: #fff;
-  }
+@keyframes move-light {
+    0% {
+        transform: translateX(-1rem) skewX(-45deg);
+    }
+    50% {
+        transform: translateX(24em) skewX(-45deg);
+    }
+    100% {
+        transform: translateX(24em) skewX(-45deg);
+    }
 
-  .template__03 {
-    opacity: 1;
-    background: linear-gradient(225deg, rgb(195, 20, 50), rgb(36, 11, 54));
-    color: #fff;
-  }
-  .template__03 .btn-color {
-    background: #FF2E63;
-  }
-  .template__03 .input-style {
-    color: #fff;
-  }
+}
 
-  .template__04 {
-    opacity: 1;
-    background: linear-gradient(225deg, #FFFFFF, #FFEFBA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    color: rgb(80, 75, 63);
-  }
-  .template__04 .btn-color {
-    background: #d3c28b;
-  }
-  .template__04 .input-style {
-    color: #fff;
-  }
 
 .size {
     max-height: calc(100vw / 16 * 9 / 2);

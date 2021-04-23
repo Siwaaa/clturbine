@@ -32,7 +32,7 @@ class PageController extends Controller
         $template = Template::where('id', $page->template_id)->first();
 
         $response = Http::withOptions([
-            'proxy' => 'http://v9z6Wo:L2DXU0@217.29.62.223:24003',
+            // 'proxy' => 'http://v9z6Wo:L2DXU0@217.29.62.223:24003',
             'headers' => [
                 'User-Agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.41 YaBrowser/21.2.0.2458 Yowser/2.5 Safari/537.36',
                 'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',

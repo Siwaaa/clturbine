@@ -14,7 +14,11 @@
       />
       <img v-else src="/img/ava.svg" alt="avatar" />
       <h4 class="font-bold mt-2">{{ instinfo.full_name }}</h4>
-      <span class="flex items-center">
+      <a
+        :href="`https://www.instagram.com/${pageProps.instagram}/`"
+        target="_black"
+        class="flex items-center"
+      >
         <svg class="inline mr-2" viewBox="0 0 48 48" width="24px" height="24px">
           <radialGradient
             id="yOrnnhliCrdS2gy~4tD8ma"
@@ -60,7 +64,7 @@
             d="M30,37H18c-3.859,0-7-3.14-7-7V18c0-3.86,3.141-7,7-7h12c3.859,0,7,3.14,7,7v12	C37,33.86,33.859,37,30,37z M18,13c-2.757,0-5,2.243-5,5v12c0,2.757,2.243,5,5,5h12c2.757,0,5-2.243,5-5V18c0-2.757-2.243-5-5-5H18z"
           /></svg
         >{{ pageProps.instagram }}
-      </span>
+      </a>
     </div>
     <main class="my-mt">
       <!-- Первый вариант -->
@@ -76,7 +80,7 @@
           :href="`https://www.instagram.com/${pageProps.instagram}/`"
           target="_black"
           @click.prevent="warning"
-          class="btn-color inline-block w-full mt-6 px-4 py-2 font-medium transition-colors duration-150 rounded-lg focus:outline-none"
+          class="btn-color inline-block w-full mt-6 px-4 py-2 font-medium transition-all duration-150 transform active:scale-105 rounded-lg focus:outline-none"
         >
           Подписаться
         </a>
@@ -88,31 +92,32 @@
           Я подписался
         </button>
         <!-- Modal -->
-        <div
-          v-show="isModalOpen"
-          class="fixed inset-0 z-30 flex bg-black bg-opacity-50 items-center sm:justify-center"
-        >
+        <transition name="fade">
           <div
-            class="w-full px-6 py-4 z-50 overflow-hidden bg-white rounded-lg sm:rounded-lg sm:m-4 sm:max-w-xl"
-            role="dialog"
-            id="modal"
+            v-if="isModalOpen"
+            class="fixed inset-0 z-30 flex bg-black bg-opacity-50 items-center sm:justify-center"
           >
-            <!-- Modal body -->
-            <div class="mt-4 mb-6">
-              <!-- Modal title -->
-              <p
-                class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300"
+            <transition name="zoom">
+              <div
+                class="w-full px-6 py-4 z-50 overflow-hidden bg-white rounded-lg sm:rounded-lg sm:m-4 sm:max-w-xl"
+                role="dialog"
+                id="modal"
               >
-                Идет переадресация...
-              </p>
-              <!-- Modal description -->
-              <p class="text-sm text-gray-700 dark:text-gray-400">
-                После подписки вернись на эту страницу для подтверждения, нажав
-                кнопку "назад" в браузере
-              </p>
-            </div>
+                <!-- Modal body -->
+                <div class="mt-4 mb-6">
+                  <!-- Modal title -->
+                  <p class="mb-2 text-lg font-semibold text-gray-700">
+                    Идет переадресация...
+                  </p>
+                  <!-- Modal description -->
+                  <p class="text-sm text-gray-700">
+                    После подписки нажми кнопку "назад" в браузере
+                  </p>
+                </div>
+              </div>
+            </transition>
           </div>
-        </div>
+        </transition>
       </form>
       <!-- Второй вариант -->
       <form
@@ -137,7 +142,7 @@
         </div>
         <button
           type="submit"
-          class="btn-color inline-block w-full mt-2 px-4 py-2 font-medium transition-colors duration-150 rounded-lg focus:outline-none"
+          class="btn-color inline-block w-full mt-2 px-4 py-2 font-medium transition-all duration-150 transform active:scale-105 rounded-lg focus:outline-none"
         >
           Проверить
         </button>
@@ -149,28 +154,31 @@
           Не подписан?
         </a>
         <!-- Modal -->
-        <div
-          v-show="isModalOpen"
-          class="fixed inset-0 z-30 flex bg-black bg-opacity-50 items-center sm:justify-center"
-        >
+        <transition name="fade">
           <div
-            class="w-full px-6 py-4 z-50 overflow-hidden bg-white rounded-lg sm:rounded-lg sm:m-4 sm:max-w-xl"
-            role="dialog"
-            id="modal"
+            v-if="isModalOpen"
+            class="fixed inset-0 z-30 flex bg-black bg-opacity-50 items-center sm:justify-center"
           >
-            <!-- Modal body -->
-            <div class="mt-4 mb-6">
-              <!-- Modal title -->
-              <p
-                class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300"
+            <transition name="zoom">
+              <div
+                v-if="isModalOpen"
+                class="w-full px-6 py-4 z-50 overflow-hidden bg-white rounded-lg sm:rounded-lg sm:m-4 sm:max-w-xl"
+                role="dialog"
+                id="modal"
               >
-                {{ textResponse }}
-              </p>
-              <!-- Modal description -->
-              <p class="text-sm text-gray-700 dark:text-gray-400"></p>
-            </div>
+                <!-- Modal body -->
+                <div class="mt-4 mb-6">
+                  <!-- Modal title -->
+                  <p class="mb-2 text-lg font-semibold text-gray-700">
+                    {{ textResponse }}
+                  </p>
+                  <!-- Modal description -->
+                  <p class="text-sm text-gray-700"></p>
+                </div>
+              </div>
+            </transition>
           </div>
-        </div>
+        </transition>
       </form>
 
       <!-- <label class="inline-block absolute bottom-2 inset-x-0 text-center"
@@ -224,9 +232,10 @@ export default {
         this.$Progress.finish();
         localStorage.setItem("check-first-screen", true);
         window.location.href = event.target.href;
-      }, 4000);
+      }, 3000);
     },
     searchAk() {
+      fbq("trackCustom", "CheckSubButton");
       this.openModal();
       this.$Progress.start();
       console.log(this.inst);
@@ -258,7 +267,7 @@ export default {
               this.textResponse = "Идет поиск вашего аккаунта...";
             }, 2000);
           } else {
-            this.textResponse = "Вы не подписались";
+            this.textResponse = "Вы не подписались!";
             setTimeout(() => {
               this.closeModal();
               this.textResponse = "Идет поиск вашего аккаунта...";
@@ -271,15 +280,38 @@ export default {
 </script>
 
 <style>
-.size {
-  max-height: calc(100vw / 16 * 9 / 2);
-}
-@media (max-width: 640px) {
-  .size {
-    max-height: calc(100vw / 16 * 9);
-  }
-}
 .my-mt {
   margin-top: 16vh;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.zoom-enter-active,
+.zoom-leave-active {
+  animation-duration: 0.7s;
+  animation-fill-mode: both;
+  animation-name: zoom;
+}
+
+.zoom-leave-active {
+  animation-direction: reverse;
+}
+
+@keyframes zoom {
+  from {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 </style>
