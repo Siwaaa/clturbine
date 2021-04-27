@@ -11,6 +11,7 @@
         alt="avatar"
         class="h-20 w-20 overflow-hidden"
         style="border-radius: 50%"
+        crossorigin="use-credentials"
       />
       <img v-else src="/img/ava.svg" alt="avatar" />
       <h4 class="font-bold mt-2">{{ instinfo.full_name }}</h4>
@@ -235,7 +236,7 @@ export default {
       }, 3000);
     },
     searchAk() {
-      fbq("trackCustom", "CheckSubButton");
+      this.pageProps.fb_pixel ? fbq("trackCustom", "CheckSubButton") : false
       this.openModal();
       this.$Progress.start();
       console.log(this.inst);
@@ -295,7 +296,7 @@ export default {
 
 .zoom-enter-active,
 .zoom-leave-active {
-  animation-duration: 0.7s;
+  animation-duration: 0.8s;
   animation-fill-mode: both;
   animation-name: zoom;
 }

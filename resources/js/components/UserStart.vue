@@ -11,9 +11,13 @@
     </header>
     <main class="mt-4 px-6 flex flex-col">
       <div class="decription">
-        <p style="white-space: pre-wrap;">{{ pageProps.description_ad }}</p>
+        <p style="white-space: pre-wrap">{{ pageProps.description_ad }}</p>
       </div>
-      <div v-if="ds" class="mt-4">Timer ?</div>
+      <Timer
+        v-if="pageProps.timer"
+        :timer_text="pageProps.timer_text"
+        :timer_sec="pageProps.timer_sec"
+      ></Timer>
       <a
         :href="`/${pageProps.url}/inst`"
         class="btn-color btn-animate w-full inline-block text-center my-6 px-4 py-2 font-medium transition-all duration-150 transform active:scale-105 rounded-lg focus:outline-none overflow-hidden relative"
@@ -31,15 +35,17 @@
 </template>
 
 <script>
+import Timer from "./Elements/Timer.vue";
 export default {
+  components: { Timer },
   props: ["pageProps", "template"],
   data() {
     return {
       ds: false,
       className: "bg-purple-600",
       srcImg: null,
-    //   urlAPI: "http://127.0.0.1:8001",
-    urlAPI: "https://api.client-turbine.ru",
+      //   urlAPI: "http://127.0.0.1:8001",
+      urlAPI: "https://api.client-turbine.ru",
     };
   },
   computed: {},

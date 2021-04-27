@@ -37,14 +37,24 @@ class PageController extends Controller
                 'User-Agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.41 YaBrowser/21.2.0.2458 Yowser/2.5 Safari/537.36',
                 'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
                 'accept-language' => 'ru,en;q=0.9,la;q=0.8',
-                'cookie' => 'ig_did=094CD26D-2704-454A-9C2D-2B47678C752F; mid=XqKxYwAEAAGRm0dt2zTb5E3c9l0E; fbm_124024574287414=base_domain=.instagram.com; shbid=357; ig_nrcb=1; csrftoken=B5gazmLMtSoUVolbRml6Jv6dt2XGdh6d; ds_user_id=4780859332; sessionid=4780859332:aLLU4PFW27BWae:29; shbts=1617291999.3824177; rur=ATN; fbsr_124024574287414=hOOepCJ4YK2JX83AaXAdvqvveI_3N7h7bdVsDuH24Qg.eyJ1c2VyX2lkIjoiMTAwMDA3NDMzOTc4MjU3IiwiY29kZSI6IkFRRFV1ckdjWGdVY0lNM0hpZHVTaVhkcHh0d0dZSDdaNVEzeXlSek1iZTNwdFU5RHRvUFBmMTR1S1ZPQ3ZrckdCbzg2NVpnNmhFZkMxb0xtNFpsSWhGc2dZa1VKZ1YxMGpuVWg4akZkUVRtSjUzRXAzbk8zTVhkUjdVWGpSQm9iS0xmdjJ6SDNSeGVTZWRqWWdYaWc5d241N002VTBuWjlZeTFyUFJuM2U2UlFxRGY0SWxiUlZsOENua3pNTG1fT21qbXBQN1hrcDhObmU1QlpKTXpqY1lnYTJSeVpyUGpEd3Z5TVdBM0JkZUwxank0YmdpbjJjOXA1VkRJd0liaU1udXBqTVpXMlpoVHVmRUxYMWU2cUtaZmhzM3BSVkpOWHFZSWFadmlJdGVub0Z4S05JRkpzX0N6T1pCbEJiNHY1NTlna3V6QWN1dWNsRFFBTlhHNERuRWRnIiwib2F1dGhfdG9rZW4iOiJFQUFCd3pMaXhuallCQU81Z0QwU2lTd01zVFJoZUhpN1pDOFVnNEpWTTJUWHdqQ0c5Y0VzUlh5RFpDcjZGWkJxWHQyWWJKVFhCM3dWYkkya1F0TGFSaGF2dFpCSWlzQTd5VzN5WkM5aThaQU02dGFQcGp4NGRTc0xSSGNBcGdMc052dXBWOTdTcE5aQmlEOXhha1FVb2FGb1NKMGh2dWV1a3p4UmNTUDg5aXpEdjJTUm1Ma3BSTzlKIiwiYWxnb3JpdGhtIjoiSE1BQy1TSEEyNTYiLCJpc3N1ZWRfYXQiOjE2MTczNTYwMTB9',
+                'cookie' => 'ig_did=094CD26D-2704-454A-9C2D-2B47678C752F; mid=XqKxYwAEAAGRm0dt2zTb5E3c9l0E; fbm_124024574287414=base_domain=.instagram.com; shbid=357; ig_nrcb=1; ds_user_id=4780859332; csrftoken=NHbQiMmxlBBWp7j3m9mqnjkyMHlgK1C8; sessionid=4780859332:R2pQp6Jr666rhL:3; ig_direct_region_hint=ASH; shbts=1619464506.9977283; rur=ATN; fbsr_124024574287414=PJ5opHaLRdFyPqVY6-uESQdtVcAXdPTHOBaWP3qFcWs.eyJ1c2VyX2lkIjoiMTAwMDA3NDMzOTc4MjU3IiwiY29kZSI6IkFRQWtpUGJTczZLMm1EQ0NNM1pJMnRkVHZ6Y2Y0bzQ5V2MyX1AwY3l4YmtrTUl1dnBUU1R3VzZGT0NseExFb3pVY3NMc082RENkM3JGWDdaWmtKdHI2QkczOG5zOHkxN2ZmbzBacXVNMDdsalgxa3BsZE8wNUVLRlJWbGhOSFJWN05WTzNtd3djUUJnQXNoQllUbWRXa1VjUzdIcW5xY0QwaXltQUZ3ODA4SWFReWFYclRTWHFKQ3RWN2NVX1ExdXRZWVI0VXBkVXhvMFRsdGplendNdmRQaUN4azhkYU9fWGtfWUdoR09LV3BqV293NllpNkVkaTN0aGU3UGtFUUQzcEh1MjhpMnpJLTJQZW5HUGdMT1k4dDkxVXRtdWJrd01nTW1kRE0xMGJFNU1XS2VFTnktd3FkSVkwV0tGUzhqVWxYajV1cjR4ei1tdmF5Y2VfUFR5YWhEIiwib2F1dGhfdG9rZW4iOiJFQUFCd3pMaXhuallCQU5VY2ptT3J2b2FKTDE0em1jV09rdzZXMWxCWkJ4b0Jkc254c1czUU5FNzdlQUtqWVdlUXdqZ1F5NEdKWkN6Z1Z3ZHRNc2EyS1J5b0t3QXlWWkNNMVYyMnZkQnN6aUZnQ2tXcGFUWkJXRXU4bHVXZzFrd0lTTkJGbUl2RHFUSXRZekJTUk1icHRteE9GYzdWYUtqcmRueFF2QVZNV3VTN3JjZHdoYU11IiwiYWxnb3JpdGhtIjoiSE1BQy1TSEEyNTYiLCJpc3N1ZWRfYXQiOjE2MTk0NjUwNTB9',
+                'accept-encoding' => 'gzip, deflate, br',
+                'cache-control' => 'max-age=0',
+                'sec-fetch-dest' => 'document',
+                'sec-fetch-mode' => 'navigate',
+                'sec-fetch-site' => 'none',
+                'sec-fetch-user' => '?1',
+                'upgrade-insecure-requests' => '1',
+                'Cross-Origin-Resource-Policy' => 'cross-origin'
             ]
         ])->get("https://www.instagram.com/{$page->instagram}/?__a=1");
         $account = $response->json();
 
         $profile_url = $account['graphql']['user']['profile_pic_url'];
+        $response2 = base64_encode(file_get_contents($profile_url));
+        $src = 'data:image:jpeg;base64,'.$response2;
         $full_name = $account['graphql']['user']['full_name'];
-        $instinfo['profile_url'] = $profile_url;
+        $instinfo['profile_url'] = $src;
         $instinfo['full_name'] = $full_name;
 
         if(isset($page) && !isset($_COOKIE["v2-{$page->id}"])) {
