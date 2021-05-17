@@ -135,11 +135,26 @@
           <input
             v-model="inst"
             type="text"
-            maxlength="24"
+            maxlength="30"
             required
             class="w-full form-input mt-8 text-black focus:outline-none"
             style="padding-left: 1.25rem"
           />
+          <div
+            v-if="showLastUsername"
+            class="absolute z-30 w-full bg-white text-black border rounded-md cursor-pointer shadow-md"
+          >
+            <ul class="w-full p-2 overflow-x-auto divide-y">
+              <li
+                class="py-1"
+                v-for="(item, index) in filterUsername"
+                :key="index"
+                @click="setUsername(item)"
+              >
+                {{ item }}
+              </li>
+            </ul>
+          </div>
         </div>
         <button
           type="submit"
@@ -199,16 +214,21 @@ export default {
     return {
       isModalOpen: false,
       inst: "",
+      showLastUsername: false,
       checkFirstScreen: false,
       textResponse: "Идет поиск вашего аккаунта...",
       intAvatar: null,
-      //   urlAPI: "http://127.0.0.1:8001",
-      urlAPI: "https://api.client-turbine.ru",
+      lastArrUsername: [],
+    //   urlAPI: "http://127.0.0.1:8001",
+       urlAPI: "https://api.client-turbine.ru",
     };
   },
-  computed: {},
-  created() {
-    this.checkFirstScreen = localStorage.getItem("check-first-screen");
+  computed: {
+    filterUsername() {
+      return this.lastArrUsername.filter(
+        (element) => element.substring(0, this.inst.length) == this.inst
+      );
+    },
   },
   methods: {
     closeModal() {
@@ -216,6 +236,10 @@ export default {
     },
     openModal() {
       this.isModalOpen = true;
+    },
+    setUsername(item) {
+      this.inst = item;
+      this.showLastUsername = false;
     },
     check() {
       localStorage.getItem("check-first-screen")
@@ -236,7 +260,7 @@ export default {
       }, 3000);
     },
     searchAk() {
-      this.pageProps.fb_pixel ? fbq("trackCustom", "CheckSubButton") : false
+      this.pageProps.fb_pixel ? fbq("trackCustom", "CheckSubButton") : false;
       this.openModal();
       this.$Progress.start();
       console.log(this.inst);
@@ -276,6 +300,40 @@ export default {
           }
         });
     },
+  },
+  watch: {
+    inst: function (val) {
+      if (val.length > 1 && this.filterUsername.length && this.filterUsername != val) {
+        this.showLastUsername = true;
+      } else {
+        this.showLastUsername = false;
+      }
+    },
+  },
+  created() {
+    this.checkFirstScreen = localStorage.getItem("check-first-screen");
+
+    fetch(`${this.urlAPI}/api/last`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username: this.pageProps.instagram,
+      }),
+    })
+      .then((response) =>
+        response.ok ? response.json() : Promise.reject(response)
+      )
+      .then((result) => {
+        this.lastArrUsername = result.data;
+        console.log(this.lastArrUsername);
+      })
+      .catch((error) => {
+        console.log("Данные с сервера не получены");
+        throw error;
+      });
   },
 };
 </script>
