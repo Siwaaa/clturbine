@@ -128,7 +128,7 @@
       >
         <input type="hidden" name="_token" :value="csrf" />
         <h2 class="font-bold text-xl leading-5">
-          Введите ваш логин инстаграма для проверки подписки:
+          Введите первые буквы вашего логина Instagram:
         </h2>
         <div class="relative">
           <span class="absolute top-10 left-1 text-gray-700">@</span>
@@ -226,7 +226,7 @@ export default {
   computed: {
     filterUsername() {
       return this.lastArrUsername.filter(
-        (element) => element.substring(0, this.inst.length) == this.inst
+        (element) => element.substring(0, this.inst.length) == this.inst.toLowerCase()
       );
     },
   },
@@ -271,7 +271,7 @@ export default {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: this.inst,
+          username: this.inst.toLowerCase(),
         }),
       })
         .then((response) => {
@@ -292,7 +292,7 @@ export default {
               this.textResponse = "Идет поиск вашего аккаунта...";
             }, 2000);
           } else {
-            this.textResponse = "Вы не подписались!";
+            this.textResponse = "Вы не нажали кнопку 'Подписаться' в Instagram!";
             setTimeout(() => {
               this.closeModal();
               this.textResponse = "Идет поиск вашего аккаунта...";
@@ -328,7 +328,6 @@ export default {
       )
       .then((result) => {
         this.lastArrUsername = result.data;
-        console.log(this.lastArrUsername);
       })
       .catch((error) => {
         console.log("Данные с сервера не получены");
