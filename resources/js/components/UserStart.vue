@@ -44,7 +44,7 @@ export default {
       ds: false,
       className: "bg-purple-600",
       srcImg: null,
-      //   urlAPI: "http://127.0.0.1:8001",
+        // urlAPI: "http://127.0.0.1:8001",
       urlAPI: "https://api.client-turbine.ru",
     };
   },

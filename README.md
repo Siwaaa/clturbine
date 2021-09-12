@@ -15,7 +15,7 @@ git commit -m ""
 git push origin master
 ```
 
-На vps
+## На vps
 3. Подтянуть изменения
 ```
 cd /var/www/www-root/data/www/clturbine.site

@@ -23,5 +23,9 @@ class Page extends Model
     {
         return $this->hasOne(Domain::class);
     }
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
 
 }

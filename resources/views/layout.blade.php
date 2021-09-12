@@ -52,7 +52,7 @@
 </head>
 <body>
     <div id="app">
-        <div class="flex flex-col	items-center min-h-screen md:p-6 md:bg-gray-50">
+        <div class="flex flex-col items-center min-h-screen md:p-6 md:bg-gray-50">
             @yield('content')
         </div>
     </div>
