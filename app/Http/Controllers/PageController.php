@@ -19,7 +19,7 @@ class PageController extends Controller
         $user = User::where('id', $page->user_id)->first();
 
         if($user->balance < 1) {
-            return view('notMoney', compact('page', 'template'));
+            return view('notMoney', compact('page'));
         }
 
         if(isset($page) && !isset($_COOKIE["v1-{$page->id}"])) {

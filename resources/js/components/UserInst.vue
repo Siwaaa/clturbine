@@ -197,12 +197,12 @@
         </transition>
       </form>
 
-      <!-- <label class="inline-block absolute bottom-2 inset-x-0 text-center"
+      <label class="inline-block absolute bottom-2 inset-x-0 text-sm text-center"
         >Сделано в
-        <a href="https://client-turbine.ru" target="_blank" class=""
+        <a href="#" target="_blank" class=""
           >ClientTurbine</a
         ></label
-      > -->
+      >
     </main>
   </div>
 </template>
@@ -256,6 +256,7 @@ export default {
       setTimeout(() => {
         this.$Progress.finish();
         localStorage.setItem("check-first-screen", true);
+        this.closeModal();
         window.location.href = event.target.href;
       }, 3000);
     },

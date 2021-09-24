@@ -9,7 +9,7 @@ class Template extends Model
 {
     use HasFactory;
 
-    public function page ()
+    public function page()
     {
         return $this->belongsTo(Page::class);
     }
