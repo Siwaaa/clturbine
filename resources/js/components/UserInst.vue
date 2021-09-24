@@ -1,6 +1,18 @@
 <template>
   <div
-    class="pb-6 pt-12 px-6 sm:w-96 w-full relative break-words min-h-screen md:h-full md:shadow-lg md:rounded-lg"
+    class="
+      pb-6
+      pt-12
+      px-6
+      sm:w-96
+      w-full
+      relative
+      break-words
+      min-h-screen
+      md:h-full
+      md:shadow-lg
+      md:rounded-lg
+    "
     :class="template.css_class"
   >
     <vue-progress-bar></vue-progress-bar>
@@ -81,7 +93,21 @@
           :href="`https://www.instagram.com/${pageProps.instagram}/`"
           target="_black"
           @click.prevent="warning"
-          class="btn-color inline-block w-full mt-6 px-4 py-2 font-medium transition-all duration-150 transform active:scale-105 rounded-lg focus:outline-none"
+          class="
+            btn-color
+            inline-block
+            w-full
+            mt-6
+            px-4
+            py-2
+            font-medium
+            transition-all
+            duration-150
+            transform
+            active:scale-105
+            rounded-lg
+            focus:outline-none
+          "
         >
           Подписаться
         </a>
@@ -96,11 +122,30 @@
         <transition name="fade">
           <div
             v-if="isModalOpen"
-            class="fixed inset-0 z-30 flex bg-black bg-opacity-50 items-center sm:justify-center"
+            class="
+              fixed
+              inset-0
+              z-30
+              flex
+              bg-black bg-opacity-50
+              items-center
+              sm:justify-center
+            "
           >
             <transition name="zoom">
               <div
-                class="w-full px-6 py-4 z-50 overflow-hidden bg-white rounded-lg sm:rounded-lg sm:m-4 sm:max-w-xl"
+                class="
+                  w-full
+                  px-6
+                  py-4
+                  z-50
+                  overflow-hidden
+                  bg-white
+                  rounded-lg
+                  sm:rounded-lg
+                  sm:m-4
+                  sm:max-w-xl
+                "
                 role="dialog"
                 id="modal"
               >
@@ -142,7 +187,17 @@
           />
           <div
             v-if="showLastUsername"
-            class="absolute z-30 w-full bg-white text-black border rounded-md cursor-pointer shadow-md"
+            class="
+              absolute
+              z-30
+              w-full
+              bg-white
+              text-black
+              border
+              rounded-md
+              cursor-pointer
+              shadow-md
+            "
           >
             <ul class="w-full p-2 overflow-x-auto divide-y">
               <li
@@ -158,7 +213,21 @@
         </div>
         <button
           type="submit"
-          class="btn-color inline-block w-full mt-2 px-4 py-2 font-medium transition-all duration-150 transform active:scale-105 rounded-lg focus:outline-none"
+          class="
+            btn-color
+            inline-block
+            w-full
+            mt-2
+            px-4
+            py-2
+            font-medium
+            transition-all
+            duration-150
+            transform
+            active:scale-105
+            rounded-lg
+            focus:outline-none
+          "
         >
           Проверить
         </button>
@@ -173,12 +242,31 @@
         <transition name="fade">
           <div
             v-if="isModalOpen"
-            class="fixed inset-0 z-30 flex bg-black bg-opacity-50 items-center sm:justify-center"
+            class="
+              fixed
+              inset-0
+              z-30
+              flex
+              bg-black bg-opacity-50
+              items-center
+              sm:justify-center
+            "
           >
             <transition name="zoom">
               <div
                 v-if="isModalOpen"
-                class="w-full px-6 py-4 z-50 overflow-hidden bg-white rounded-lg sm:rounded-lg sm:m-4 sm:max-w-xl"
+                class="
+                  w-full
+                  px-6
+                  py-4
+                  z-50
+                  overflow-hidden
+                  bg-white
+                  rounded-lg
+                  sm:rounded-lg
+                  sm:m-4
+                  sm:max-w-xl
+                "
                 role="dialog"
                 id="modal"
               >
@@ -197,11 +285,9 @@
         </transition>
       </form>
 
-      <label class="inline-block absolute bottom-2 inset-x-0 text-sm text-center"
-        >Сделано в
-        <a href="#" target="_blank" class=""
-          >ClientTurbine</a
-        ></label
+      <label
+        class="inline-block absolute bottom-2 inset-x-0 text-sm text-center"
+        >Сделано в <a href="#" target="_blank" class="">ClientTurbine</a></label
       >
     </main>
   </div>
@@ -219,14 +305,15 @@ export default {
       textResponse: "Идет поиск вашего аккаунта...",
       intAvatar: null,
       lastArrUsername: [],
-    //   urlAPI: "http://127.0.0.1:8001",
+      //   urlAPI: "http://127.0.0.1:8001",
       urlAPI: "https://api.client-turbine.ru",
     };
   },
   computed: {
     filterUsername() {
       return this.lastArrUsername.filter(
-        (element) => element.substring(0, this.inst.length) == this.inst.toLowerCase()
+        (element) =>
+          element.substring(0, this.inst.length) == this.inst.toLowerCase()
       );
     },
   },
@@ -256,8 +343,8 @@ export default {
       setTimeout(() => {
         this.$Progress.finish();
         localStorage.setItem("check-first-screen", true);
-        this.closeModal();
         window.location.href = event.target.href;
+        this.closeModal();
       }, 3000);
     },
     searchAk() {
@@ -293,7 +380,8 @@ export default {
               this.textResponse = "Идет поиск вашего аккаунта...";
             }, 2000);
           } else {
-            this.textResponse = "Вы не нажали кнопку 'Подписаться' в Instagram!";
+            this.textResponse =
+              "Вы не нажали кнопку 'Подписаться' в Instagram!";
             setTimeout(() => {
               this.closeModal();
               this.textResponse = "Идет поиск вашего аккаунта...";
@@ -304,7 +392,34 @@ export default {
   },
   watch: {
     inst: function (val) {
-      if (val.length > 1 && this.filterUsername.length && this.filterUsername != val) {
+      if (val.length == 1) {
+        fetch(`${this.urlAPI}/api/last`, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: this.pageProps.instagram,
+          }),
+        })
+          .then((response) =>
+            response.ok ? response.json() : Promise.reject(response)
+          )
+          .then((result) => {
+            this.lastArrUsername = result.data;
+          })
+          .catch((error) => {
+            console.log("Данные с сервера не получены");
+            throw error;
+          });
+      }
+
+      if (
+        val.length > 1 &&
+        this.filterUsername.length &&
+        this.filterUsername != val
+      ) {
         this.showLastUsername = true;
       } else {
         this.showLastUsername = false;
@@ -313,27 +428,6 @@ export default {
   },
   created() {
     this.checkFirstScreen = localStorage.getItem("check-first-screen");
-
-    fetch(`${this.urlAPI}/api/last`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: this.pageProps.instagram,
-      }),
-    })
-      .then((response) =>
-        response.ok ? response.json() : Promise.reject(response)
-      )
-      .then((result) => {
-        this.lastArrUsername = result.data;
-      })
-      .catch((error) => {
-        console.log("Данные с сервера не получены");
-        throw error;
-      });
   },
 };
 </script>
