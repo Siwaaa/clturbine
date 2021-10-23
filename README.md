@@ -1,6 +1,7 @@
 
 ## Deployment
 1. Локально проделываем следующие операции:
+Меняем api url на public
 ```
 npm run prod
 composer install --optimize-autoloader --no-dev
@@ -8,7 +9,7 @@ php artisan config:cache
 php artisan route:cache
 php artisan view:cache
 ```
-2. Пуляем на github
+1. Пуляем на github
 ```
 git add .
 git commit -m ""

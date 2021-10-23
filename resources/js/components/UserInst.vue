@@ -299,8 +299,8 @@ export default {
       intAvatar: null,
       showSearchedUsername: false,
       searchedArrUsername: [], // массив найденых подписчиков по первым 3 буквам
-        urlAPI: "http://127.0.0.1:8001",
-    //   urlAPI: "https://api.client-turbine.ru",
+        // urlAPI: "http://127.0.0.1:8001",
+      urlAPI: "https://api.client-turbine.ru",
     };
   },
   computed: {
