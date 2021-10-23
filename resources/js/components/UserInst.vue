@@ -9,9 +9,7 @@
       relative
       break-words
       min-h-screen
-      md:h-full
-      md:shadow-lg
-      md:rounded-lg
+      md:h-full md:shadow-lg md:rounded-lg
     "
     :class="template.css_class"
   >
@@ -142,9 +140,7 @@
                   overflow-hidden
                   bg-white
                   rounded-lg
-                  sm:rounded-lg
-                  sm:m-4
-                  sm:max-w-xl
+                  sm:rounded-lg sm:m-4 sm:max-w-xl
                 "
                 role="dialog"
                 id="modal"
@@ -168,7 +164,7 @@
       <!-- Второй вариант -->
       <form
         v-else
-        @submit.prevent="searchAk"
+        @submit.prevent="searchAkk"
         class="input-container w-full md:max-w-xs md:m-auto mt-4 text-center"
       >
         <input type="hidden" name="_token" :value="csrf" />
@@ -186,7 +182,7 @@
             style="padding-left: 1.25rem"
           />
           <div
-            v-if="showLastUsername"
+            v-if="showSearchedUsername"
             class="
               absolute
               z-30
@@ -263,9 +259,7 @@
                   overflow-hidden
                   bg-white
                   rounded-lg
-                  sm:rounded-lg
-                  sm:m-4
-                  sm:max-w-xl
+                  sm:rounded-lg sm:m-4 sm:max-w-xl
                 "
                 role="dialog"
                 id="modal"
@@ -300,18 +294,18 @@ export default {
     return {
       isModalOpen: false,
       inst: "",
-      showLastUsername: false,
       checkFirstScreen: false,
       textResponse: "Идет поиск вашего аккаунта...",
       intAvatar: null,
-      lastArrUsername: [],
-      //   urlAPI: "http://127.0.0.1:8001",
-      urlAPI: "https://api.client-turbine.ru",
+      showSearchedUsername: false,
+      searchedArrUsername: [], // массив найденых подписчиков по первым 3 буквам
+        urlAPI: "http://127.0.0.1:8001",
+    //   urlAPI: "https://api.client-turbine.ru",
     };
   },
   computed: {
     filterUsername() {
-      return this.lastArrUsername.filter(
+      return this.searchedArrUsername.filter(
         (element) =>
           element.substring(0, this.inst.length) == this.inst.toLowerCase()
       );
@@ -323,10 +317,6 @@ export default {
     },
     openModal() {
       this.isModalOpen = true;
-    },
-    setUsername(item) {
-      this.inst = item;
-      this.showLastUsername = false;
     },
     check() {
       localStorage.getItem("check-first-screen")
@@ -347,11 +337,32 @@ export default {
         this.closeModal();
       }, 3000);
     },
-    searchAk() {
-      this.pageProps.fb_pixel ? fbq("trackCustom", "CheckSubButton") : false;
-      this.openModal();
-      this.$Progress.start();
-      console.log(this.inst);
+    setUsername(item) {
+      this.inst = item;
+      this.showSearchedUsername = false;
+    },
+    searchAkk() {
+        this.pageProps.fb_pixel ? fbq("trackCustom", "CheckSubButton") : false;
+        this.openModal();
+        this.$Progress.start();
+        console.log(this.inst);
+        // Поиск по массиву, который хранит результат по первым 3 буквам
+        const searched = this.searchedArrUsername.find((i) => i == this.inst)
+        if(searched) {
+            this.$Progress.finish();
+            this.textResponse = "Аккаунт найден!";
+            document.cookie = `url=${this.pageProps.url}`;
+            // подчищаем и закрываем
+            setTimeout(() => {
+              window.location.href = `finish`;
+              this.closeModal();
+              this.textResponse = "Идет поиск вашего аккаунта...";
+            }, 2000);
+        } else {
+            this.searchWithFetch()
+        }
+    },
+    searchWithFetch() {
       fetch(`${this.urlAPI}/api/${this.pageProps.url}/check`, {
         method: "POST",
         headers: {
@@ -392,22 +403,22 @@ export default {
   },
   watch: {
     inst: function (val) {
-      if (val.length == 1) {
-        fetch(`${this.urlAPI}/api/last`, {
+      if (val.length == 3) {
+        fetch(`${this.urlAPI}/api/${this.pageProps.url}/search`, {
           method: "POST",
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            username: this.pageProps.instagram,
+            username: val.toLowerCase(),
           }),
         })
           .then((response) =>
             response.ok ? response.json() : Promise.reject(response)
           )
           .then((result) => {
-            this.lastArrUsername = result.data;
+            this.searchedArrUsername = result.data;
           })
           .catch((error) => {
             console.log("Данные с сервера не получены");
@@ -416,13 +427,13 @@ export default {
       }
 
       if (
-        val.length > 1 &&
+        val.length > 3 &&
         this.filterUsername.length &&
         this.filterUsername != val
       ) {
-        this.showLastUsername = true;
+        this.showSearchedUsername = true;
       } else {
-        this.showLastUsername = false;
+        this.showSearchedUsername = false;
       }
     },
   },
